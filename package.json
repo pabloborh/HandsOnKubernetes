@@ -1,0 +1,22 @@
+{
+  "name": "MeetUp",
+  "version": "1.0.0",
+  "description": "front app",
+  "main": "front.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "kubernetes"
+  ],
+  "author": "Pablo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^4.13.7",
+    "zeromq": "*"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.2"
+  }
+}
