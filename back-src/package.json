@@ -1,0 +1,26 @@
+{
+  "name": "MeetUp",
+  "version": "1.0.0",
+  "description": "nodo master de sistema kafkalike",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.dsic.upv.es:pabborh1/kafkalike.git"
+  },
+  "keywords": [
+    "kubernetes"
+  ],
+  "author": "Pablo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^4.13.7",
+    "zeromq": "*"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.2"
+  }
+}

@@ -1,8 +1,5 @@
-//cliente REQ
 var zmq = require('zeromq');
-
 var front = zmq.socket('req')
-
 var front_ID = Math.trunc(Math.random() * (10000 - 1) + 1)
 
 front.on('message',function (respuesta){
@@ -10,15 +7,18 @@ front.on('message',function (respuesta){
 	
 });
 
-front.connect("tcp://127.0.0.1:9000");
+
+///////////////////////////////////
+front.connect("tcp://my-back:9000");
+///////////////////////////////////
 
 var jsonMessage='{"Topic": "KubernetesIsAwesome", "Message": "Hola ke ase"}'
 
 console.log("Enviando.. "+jsonMessage)
-
 front.send(jsonMessage);
 
-// WEBSITE //
+
+//- - - - - - - WEBSITE - - - - - - - -//
 
 var http = require('http');
 http.createServer(function (req, res) {
@@ -27,11 +27,4 @@ http.createServer(function (req, res) {
 }).listen(8080, "127.0.0.1");
 console.log('Server running at http://127.0.0.1:8080/');
 
-////////////
-
-process.on('SIGINT',function(){
-	console.log("sigint capturada ! ");
-	socketRep.close();
-	socketRep = null;
-
-});
+// - - - - - - - - - - - - - - - - - - //
