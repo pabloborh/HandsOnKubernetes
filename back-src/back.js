@@ -1,6 +1,6 @@
 //servidor REP
 var zmq = require('zeromq');
-
+var back_ID = Math.trunc(Math.random() * (10000 - 1) + 1)
 var socketRep = zmq.socket('rep');
 
 socketRep.on('message', function(message){
@@ -12,7 +12,7 @@ socketRep.on('message', function(message){
 	console.log(jsonMessage.Message);
 	console.log ("- - - - - - - - - - - - -")
 
-	socketRep.send("Hola desde el back!");
+	socketRep.send("Hola desde el back " + back_ID);
 
 });
 
