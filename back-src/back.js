@@ -17,7 +17,7 @@ socketRep.on('message', function(message){
 });
 
 socketRep.bind('tcp://*:9000',function(err){
-	if(err){console.log(err);}else{console.log("escuchando en 9000..."); }
+	if(err){console.log(err);}else{console.log("Escuchando en 9000 !"); }
 
 });
 
