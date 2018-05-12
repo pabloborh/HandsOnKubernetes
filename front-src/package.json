@@ -4,7 +4,7 @@
   "description": "front app",
   "main": "front.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon front.js"
   },
   "keywords": [
     "kubernetes"
@@ -14,7 +14,9 @@
   "dependencies": {
     "express": "^4.16.2",
     "mongoose": "^4.13.7",
-    "zeromq": "*"
+    "http-signature": "~1.2.0",
+    "zeromq": "*",
+    "http": "*"
   },
   "devDependencies": {
     "nodemon": "^1.14.2"

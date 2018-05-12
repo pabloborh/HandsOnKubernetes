@@ -1,4 +1,3 @@
-//servidor REP
 var zmq = require('zeromq');
 var back_ID = Math.trunc(Math.random() * (10000 - 1) + 1)
 var socketRep = zmq.socket('rep');

@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    myapp.microservice: back-app
+  name: back-deploy
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        myapp.microservice: back-app
+    spec:
+      containers:
+      - env:
+        - name: MY_AWESOME_VAR_1
+          value: Kubernetes_rocks
+        - name: MY_AWESOME_VAR_2
+        image: pabloborh/back:latest
+        imagePullPolicy: Always
+        name: back-deploy
+        ports:
+        - containerPort: 9000
+        resources: 
+          requests:
+            cpu: "100m"
+            memory: "100Mi"
+          limits:
+            memory: "512Mi"
+      restartPolicy: Always

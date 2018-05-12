@@ -2,7 +2,7 @@
   "name": "MeetUp",
   "version": "1.0.0",
   "description": "nodo master de sistema kafkalike",
-  "main": "app.js",
+  "main": "back.js",
   "scripts": {
     "start": "nodemon app.js"
   },
