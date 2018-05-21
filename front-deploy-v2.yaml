@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     myapp.microservice: front-app
-  name: front-deploy
+  name: front-deploy-v2
 spec:
   replicas: 1
   revisionHistoryLimit: 1
@@ -15,7 +15,7 @@ spec:
   template:
     metadata:
       labels:
-        myapp.microservice: front-app
+        myapp.microservice: front-app.v2
     spec:
       containers:
       - env:
@@ -23,7 +23,7 @@ spec:
           value: Kubernetes_rocks
         - name: MY_AWESOME_VAR_2
           value: Docker_too
-        image: pabloborh/front:latest
+        image: pabloborh/front:v2
         imagePullPolicy: Always
         name: front-pod
         ports:

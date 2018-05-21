@@ -2,7 +2,6 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: front-hap
-  namespace: iot
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -20,7 +19,6 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: back-hpa
-  namespace: iot
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

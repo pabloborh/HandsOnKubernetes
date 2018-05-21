@@ -25,7 +25,7 @@ spec:
           value: Docker_too
         image: pabloborh/back:latest
         imagePullPolicy: Always
-        name: back-deploy
+        name: back-pod
         ports:
         - containerPort: 9000
         resources: 
