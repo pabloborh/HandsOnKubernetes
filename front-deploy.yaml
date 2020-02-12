@@ -1,8 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  labels:
-    myapp.microservice: front-app
   name: front-deploy
 spec:
   replicas: 1
@@ -15,19 +13,17 @@ spec:
   template:
     metadata:
       labels:
-        myapp.microservice: front-app
+        myapp.microfront: front-app
     spec:
       containers:
       - env:
-        - name: MY_AWESOME_VAR_1
-          value: Kubernetes_rocks
-        - name: MY_AWESOME_VAR_2
-          value: Docker_too
-        image: pabloborh/front:latest
+        - name: BACKEND_ENDPOINT
+          value: http://my-back:9000
+        - name: WEB_PORT
+          value: "8080"
+        image: pabloborh/workshop-front:v1
         imagePullPolicy: Always
         name: front-pod
-        ports:
-        - containerPort: 8080
         resources: 
           requests:
             cpu: "100m"

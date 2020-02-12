@@ -6,7 +6,7 @@ metadata:
   name: my-back
 spec:
   ports:
-  - name: "back-port"
+  - name: "http"
     port: 9000
     targetPort: 9000
   selector:
@@ -19,11 +19,11 @@ metadata:
     myapp: front-service
   name: my-front
 spec:
-  type: NodePort
+  # type: NodePort
   ports:
-  - name: "front-port"
+  - name: "http"
     port: 8080
     targetPort: 8080
-    nodePort: 30555
+    # nodePort: 30555
   selector:
-    myapp.microservice: front-app
+    myapp.microfront: front-app

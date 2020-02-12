@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: apps-gateway
+  annotations:
+    #zalando.org/skipper-predicate: Source("2.139.217.151/24")
+    zalando.org/skipper-filter: | 
+      clientRatelimit(500, "1s") -> compress()   
+spec:
+  rules:
+  - host: workshop.dev.mrjeffapp.net
+    http:
+      paths:
+      - backend:
+          serviceName: my-front
+          servicePort: 8080

@@ -1,30 +1,37 @@
-var zmq = require('zeromq');
-var front = zmq.socket('req')
+
 var front_ID = Math.trunc(Math.random() * (10000 - 1) + 1)
+var io = require('socket.io-client')
+var socket = io(process.env.BACKEND_ENDPOINT);
 
-front.on('message',function (respuesta){
-	console.log("Respuesta recibida ["+respuesta.toString()+"]");
-	
-});
+var jsonMessage='{"Message": "Hi from front: '+front_ID+' !"}'
 
+console.log("Sending ->["+jsonMessage.toString()+"]")
 
-///////////////////////////////////
-front.connect("tcp://my-back:9000");
-///////////////////////////////////
+socket.emit("message",jsonMessage)
 
-var jsonMessage='{"Topic": "KubernetesIsAwesome", "Message": "Hola ke ase"}'
+socket.on('message', function (data) {
+    console.log("Response ->["+data.toString()+"]");
 
-console.log("Enviando.. "+jsonMessage)
-front.send(jsonMessage);
+  });
 
 
 //- - - - - - - WEBSITE - - - - - - - -//
 
+var htmlCode = "\
+<html>\
+<body style='background-color:white;'>\
+<h1>Hello from Kubernetes!! I am " + front_ID + "</h1>\
+</body>\
+</html>\
+"
+
+
 var http = require('http');
 http.createServer(function (req, res) {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('Hello from Kubernetes!! Soy ' + front_ID + '\n');
-}).listen(8080);
-console.log('Web sirviendo en :8080');
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    // res.end('Hello from Kubernetes!! I am ' + front_ID + '\n');
+    res.end(htmlCode)
+}).listen(process.env.WEB_PORT);
+console.log('Website listening en :'+process.env.WEB_PORT);
 
 // - - - - - - - - - - - - - - - - - - //

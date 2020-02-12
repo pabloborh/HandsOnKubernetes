@@ -1,23 +1,15 @@
-var zmq = require('zeromq');
 var back_ID = Math.trunc(Math.random() * (10000 - 1) + 1)
-var socketRep = zmq.socket('rep');
 
-socketRep.on('message', function(message){
+var io = require('socket.io').listen(process.env.SOCKET_SERVER_PORT);
+
+io.sockets.on('connection', function (socket) {
 	
-	var jsonMessage =JSON.parse(message.toString())
-	
-	console.log("Mensaje recibido en back:")
-	console.log(jsonMessage.Topic);
-	console.log(jsonMessage.Message);
-	console.log ("- - - - - - - - - - - - -")
-
-	socketRep.send("Hola desde el back " + back_ID);
-
-});
-
-socketRep.bind('tcp://*:9000',function(err){
-	if(err){console.log(err);}else{console.log("Escuchando en 9000 !"); }
-
+	// Echo back messages from the client
+	socket.on('message', function (message) {
+		var jsonMessage =JSON.parse(message.toString())
+		console.log("Recived ->["+jsonMessage.Message+"]");
+		socket.emit("message","Hi from back: " + back_ID);
+	});  
 });
 
 

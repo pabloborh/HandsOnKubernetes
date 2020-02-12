@@ -1,8 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  labels:
-    myapp.microservice: back-app
   name: back-deploy
 spec:
   replicas: 1
@@ -19,15 +17,11 @@ spec:
     spec:
       containers:
       - env:
-        - name: MY_AWESOME_VAR_1
-          value: Kubernetes_rocks
-        - name: MY_AWESOME_VAR_2
-          value: Docker_too
-        image: pabloborh/back:latest
+        - name: SOCKET_SERVER_PORT
+          value: "9000"
+        image: pabloborh/workshop-back:v1
         imagePullPolicy: Always
         name: back-pod
-        ports:
-        - containerPort: 9000
         resources: 
           requests:
             cpu: "100m"
