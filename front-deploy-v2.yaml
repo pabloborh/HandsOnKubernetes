@@ -18,7 +18,7 @@ spec:
       containers:
       - env:
         - name: BACKEND_ENDPOINT
-          value: http://my-back:9000
+          value: http://my-back:80
         - name: WEB_PORT
           value: "8080"
         image: pabloborh/workshop-front:v2

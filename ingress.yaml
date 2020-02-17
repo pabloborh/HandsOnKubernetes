@@ -13,4 +13,4 @@ spec:
       paths:
       - backend:
           serviceName: my-front
-          servicePort: 8080
+          servicePort: 80
