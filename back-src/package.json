@@ -16,7 +16,7 @@
   "author": "Pablo",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2",
+    "express": "^4.18.2",
     "mongoose": "^4.13.7",
     "socket.io": "^2.3.0",
     "zeromq": "*"
